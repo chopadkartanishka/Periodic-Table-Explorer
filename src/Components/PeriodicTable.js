@@ -161,6 +161,15 @@ const PeriodicTable = () => {
         tabIndex={visible ? 0 : -1}
         title={visible ? `${element.name} (${element.symbol}) - #${element.number}` : ""}
       >
+        {element.bohr_model_image && (
+          <img
+            src={element.bohr_model_image}
+            alt=""
+            className="element-bg-image"
+            loading="lazy"
+            aria-hidden="true"
+          />
+        )}
         <strong className={`element-block ${element.block}`}>
           {element.symbol}
         </strong>
