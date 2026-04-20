@@ -194,12 +194,68 @@ position: relative;
   padding: 20px;
 }
 
+/* ===== Element Image ===== */
+.details-image-wrapper {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.details-element-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.details-image-caption {
+  margin: 0;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  font-style: italic;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.details-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.details-image-placeholder-symbol {
+  font-size: 32px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.details-image-placeholder-text {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ===== Action Buttons Row ===== */
+.details-actions {
+  display: flex;
+  gap: 8px;
+  margin: 2px 0 14px;
+}
+
 .details-gallery-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 2px 0 14px;
+  flex: 1;
   padding: 10px 14px;
   border-radius: 10px;
   border: 1px solid rgba(59, 130, 246, 0.35);
@@ -217,6 +273,54 @@ position: relative;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.32), rgba(99, 102, 241, 0.32));
   color: #eff6ff;
   transform: translateY(-1px);
+}
+
+.details-wiki-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(167, 139, 250, 0.22));
+  color: #ddd6fe;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.details-wiki-btn:hover {
+  border-color: rgba(167, 139, 250, 0.55);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.32), rgba(167, 139, 250, 0.32));
+  color: #ede9fe;
+  transform: translateY(-1px);
+}
+
+/* ===== Spectral Image ===== */
+.details-spectral {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.details-spectral-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a78bfa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.details-spectral-link:hover {
+  color: #c4b5fd;
 }
 
 @keyframes overlayFadeIn {

@@ -31,6 +31,24 @@ const SearchBar = ({ elements, onSearch, onSelectElement }) => {
     onSearch(query);
   }, [query, elements, onSearch]);
 
+  // Global keyboard shortcut: "/" to focus, "Escape" to blur
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      const tag = document.activeElement?.tagName?.toLowerCase();
+      const isEditable = tag === "input" || tag === "textarea" || document.activeElement?.isContentEditable;
+
+      if (e.key === "/" && !isEditable) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      } else if (e.key === "Escape" && document.activeElement === inputRef.current) {
+        inputRef.current?.blur();
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("keydown", handleGlobalKeyDown);
+    return () => document.removeEventListener("keydown", handleGlobalKeyDown);
+  }, []);
+
   // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {

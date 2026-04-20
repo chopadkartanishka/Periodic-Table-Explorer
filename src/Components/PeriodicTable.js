@@ -311,6 +311,26 @@ const PeriodicTable = () => {
               </div>
             </div>
 
+            {/* Element Image */}
+            {selectedElement.image?.url ? (
+              <div className="details-image-wrapper">
+                <img
+                  src={selectedElement.image.url}
+                  alt={selectedElement.image.title || selectedElement.name}
+                  className="details-element-image"
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                />
+                {selectedElement.image.title && (
+                  <p className="details-image-caption">{selectedElement.image.title}</p>
+                )}
+              </div>
+            ) : (
+              <div className="details-image-placeholder">
+                <span className="details-image-placeholder-symbol">{selectedElement.symbol}</span>
+                <span className="details-image-placeholder-text">No image available</span>
+              </div>
+            )}
+
             <div className="details-grid">
               <div className="detail-item">
                 <span className="detail-label">Atomic Number</span>
@@ -340,6 +360,34 @@ const PeriodicTable = () => {
                 <span className="detail-label">Phase</span>
                 <span className="detail-value">{selectedElement.phase ?? "—"}</span>
               </div>
+              <div className="detail-item">
+                <span className="detail-label">Melting Point</span>
+                <span className="detail-value">
+                  {selectedElement.melt != null ? `${selectedElement.melt} K` : "—"}
+                </span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Boiling Point</span>
+                <span className="detail-value">
+                  {selectedElement.boil != null ? `${selectedElement.boil} K` : "—"}
+                </span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Electron Affinity</span>
+                <span className="detail-value">
+                  {selectedElement.electron_affinity != null
+                    ? `${selectedElement.electron_affinity} kJ/mol`
+                    : "—"}
+                </span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Named By</span>
+                <span className="detail-value">{selectedElement.named_by ?? "—"}</span>
+              </div>
+              <div className="detail-item detail-item-full">
+                <span className="detail-label">Appearance</span>
+                <span className="detail-value">{selectedElement.appearance ?? "—"}</span>
+              </div>
               <div className="detail-item detail-item-full">
                 <span className="detail-label">Discovered by</span>
                 <span className="detail-value">{selectedElement.discovered_by ?? "Unknown"}</span>
@@ -354,14 +402,42 @@ const PeriodicTable = () => {
               )}
             </div>
 
-            <a
-              className="details-gallery-btn"
-              href={getElementGalleryUrl(selectedElement)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View {selectedElement.name} Gallery
-            </a>
+            {/* Action buttons */}
+            <div className="details-actions">
+              <a
+                className="details-gallery-btn"
+                href={getElementGalleryUrl(selectedElement)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Gallery
+              </a>
+              {selectedElement.source && (
+                <a
+                  className="details-wiki-btn"
+                  href={selectedElement.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more on Wikipedia →
+                </a>
+              )}
+            </div>
+
+            {/* Spectral image */}
+            {selectedElement.spectral_img && (
+              <div className="details-spectral">
+                <span className="detail-label">Spectral Image</span>
+                <a
+                  href={selectedElement.spectral_img}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="details-spectral-link"
+                >
+                  View spectral lines →
+                </a>
+              </div>
+            )}
 
             {selectedElement.summary && (
               <p className="details-summary">{selectedElement.summary}</p>
