@@ -6,9 +6,11 @@ import ThemeToggle from "./Components/ThemeToggle/ThemeToggle";
 import Assistant from "./Components/Assistant/Assistant";
 import QuizMode from "./Components/QuizMode";
 
+
 function App() {
   const [quizOpen, setQuizOpen] = useState(false);
 
+  
   return (
     <div className="app">
       <header className="app-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem' }}>
@@ -28,8 +30,7 @@ function App() {
               fontFamily: 'Inter, sans-serif',
               transition: 'all 0.2s ease',
             }}
-            title="Open Quiz Mode"
-          >
+            title="Open Quiz Mode">
             ⚗️ Quiz Mode
           </button>
           <ThemeToggle />
