@@ -18,6 +18,8 @@ const PeriodicTable = () => {
     classify: classifyElement,
   });
 
+  const [hoveredBlock, setHoveredBlock] = useState(null);
+
     // Tooltip state
   const [hoveredElement, setHoveredElement] = useState(null);
   const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -94,6 +96,9 @@ const PeriodicTable = () => {
   // Determine if an element matches current search + filters
   const isElementVisible = useCallback(
     (element) => {
+      // Hovered Block Filter
+      if (hoveredBlock && element.block !== hoveredBlock) return false;
+
       // Search filter
       if (searchQuery) {
         const q = searchQuery.toLowerCase().trim();
@@ -122,7 +127,7 @@ const PeriodicTable = () => {
 
       return true;
     },
-    [searchQuery, filters]
+    [searchQuery, filters, hoveredBlock]
   );
 
   // Filter data
@@ -192,19 +197,39 @@ const PeriodicTable = () => {
 
       {/* Legend */}
       <div className="box-container">
-        <div className="legend-item">
+        <div 
+          className="legend-item"
+          onMouseEnter={() => setHoveredBlock('s')}
+          onMouseLeave={() => setHoveredBlock(null)}
+          style={{ cursor: 'pointer' }}
+        >
           <SmallBox color="skyblue" />
           <span>s block</span>
         </div>
-        <div className="legend-item">
+        <div 
+          className="legend-item"
+          onMouseEnter={() => setHoveredBlock('d')}
+          onMouseLeave={() => setHoveredBlock(null)}
+          style={{ cursor: 'pointer' }}
+        >
           <SmallBox color="orange" />
           <span>d block</span>
         </div>
-        <div className="legend-item">
+        <div 
+          className="legend-item"
+          onMouseEnter={() => setHoveredBlock('p')}
+          onMouseLeave={() => setHoveredBlock(null)}
+          style={{ cursor: 'pointer' }}
+        >
           <SmallBox color="#4ade80" />
           <span>p block</span>
         </div>
-        <div className="legend-item">
+        <div 
+          className="legend-item"
+          onMouseEnter={() => setHoveredBlock('f')}
+          onMouseLeave={() => setHoveredBlock(null)}
+          style={{ cursor: 'pointer' }}
+        >
           <SmallBox color="#a78bfa" />
           <span>f block</span>
         </div>
