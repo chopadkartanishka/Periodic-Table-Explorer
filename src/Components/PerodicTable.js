@@ -14,7 +14,6 @@ const PeriodicTable = () => {
     setSelectedElement(element);
   };
 
-
   // Filter Blocks
 
   const mainElements = getMainElements(elementsData);
