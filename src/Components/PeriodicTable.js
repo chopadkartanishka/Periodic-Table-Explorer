@@ -345,6 +345,17 @@ const PeriodicTable = () => {
               </div>
             </div>
 
+            {selectedElement.bohr_model_3d && (
+              <div className="model-viewer-container">
+                <model-viewer
+                  src={selectedElement.bohr_model_3d}
+                  alt={`3D Bohr model of ${selectedElement.name}`}
+                  auto-rotate
+                  camera-controls
+                  ar
+                  style={{ width: '100%', height: '250px', outline: 'none' }}
+                ></model-viewer>
+                <div className="model-viewer-hint">Drag to rotate • Scroll to zoom • AR enabled</div>
             {/* Element Image */}
             {selectedElement.image?.url ? (
               <div className="details-image-wrapper">
