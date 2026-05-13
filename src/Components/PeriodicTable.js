@@ -16,62 +16,96 @@ const PeriodicTable = () => {
   const actinides = getActinides(elementsData);
 
   return (
-  <div>
-    <h1>Periodic Table Explorer</h1>
+    <div className="periodic-table-wrapper">
+      <h1>Periodic Table Explorer</h1>
 
-    <div className="periodic-table">
-      {mainElements.map((element) => (
+      <div className="periodic-table">
+        {mainElements.map((element) => (
+          <div
+            key={element.number}
+            className="element"
+            style={{
+              gridColumn: element.group,
+              gridRow: element.period,
+              backgroundColor: getBlockColor(element.block),
+            }}
+            onClick={() => setSelectedElement(element)}
+          >
+            <strong>{element.symbol}</strong>
+            <span>{element.number}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="f-block">
+        {lanthanides.map((element, index) => (
+          <div
+            key={element.number}
+            className="element"
+            style={{
+              gridColumn: index + 4,
+              backgroundColor: getBlockColor(element.block),
+            }}
+            onClick={() => setSelectedElement(element)}
+          >
+            <strong>{element.symbol}</strong>
+            <span>{element.number}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="f-block">
+        {actinides.map((element, index) => (
+          <div
+            key={element.number}
+            className="element"
+            style={{
+              gridColumn: index + 4,
+              backgroundColor: getBlockColor(element.block),
+            }}
+            onClick={() => setSelectedElement(element)}
+          >
+            <strong>{element.symbol}</strong>
+            <span>{element.number}</span>
+          </div>
+        ))}
+      </div>
+
+      {selectedElement && (
         <div
-          key={element.number}
-          className="element"
-          style={{
-            gridColumn: element.group,
-            gridRow: element.period,
-            backgroundColor: getBlockColor(element.block),
-          }}
-          onClick={() => setSelectedElement(element) }
+          className="modal-overlay"
+          onClick={() => setSelectedElement(null)}
         >
-          <strong>{element.symbol}</strong>
-          <span>{element.number}</span>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="close-modal"
+              onClick={() => setSelectedElement(null)}
+            >
+              ×
+            </button>
+
+            <h2>{selectedElement.name}</h2>
+
+            <p>
+              <strong>Symbol:</strong> {selectedElement.symbol}
+            </p>
+
+            <p>
+              <strong>Atomic Number:</strong> {selectedElement.number}
+            </p>
+
+            <p>
+              <strong>Electron Configuration:</strong>{" "}
+              {selectedElement.electron_configuration_semantic}
+            </p>
+          </div>
         </div>
-      ))}
+      )}
     </div>
-    {selectedElement && (
-  <div
-    className="modal-overlay"
-    onClick={() => setSelectedElement(null)}
-  >
-    <div
-      className="modal-content"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        className="close-modal"
-        onClick={() => setSelectedElement(null)}
-      >
-        ×
-      </button>
-
-      <h2>{selectedElement.name}</h2>
-
-      <p>
-        <strong>Symbol:</strong> {selectedElement.symbol}
-      </p>
-
-      <p>
-        <strong>Atomic Number:</strong> {selectedElement.number}
-      </p>
-
-      <p>
-        <strong>Electron Configuration:</strong>{" "}
-        {selectedElement.electron_configuration_semantic}
-      </p>
-    </div>
-  </div>
-)}
-
-  </div>
-);
+  );
 };
 
 export default PeriodicTable;
