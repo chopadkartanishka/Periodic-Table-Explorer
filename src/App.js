@@ -5,6 +5,7 @@ import CompareElements from "./Components/compareElements";
 import ThemeToggle from "./Components/ThemeToggle/ThemeToggle";
 import Assistant from "./Components/Assistant/Assistant";
 import QuizMode from "./Components/QuizMode";
+import ElementDetailsPanel from "./Components/ElementDetailsPanel";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Trends />
       <CompareElements />
       <Assistant />
+      <ElementDetailsPanel />
       {quizOpen && <QuizMode onClose={() => setQuizOpen(false)} />}
     </div>
   );
