@@ -5,6 +5,7 @@ import CompareElements from "./Components/compareElements";
 import ThemeToggle from "./Components/ThemeToggle/ThemeToggle";
 import Assistant from "./Components/Assistant/Assistant";
 import QuizMode from "./Components/QuizMode";
+import ElementDetailsPanel from "./Components/ElementDetailsPanel";
 
 
 function App() {
@@ -14,7 +15,20 @@ function App() {
   return (
     <div className="app">
       <header className="app-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem' }}>
-        <h1 style={{ margin: 0 }}>Periodic Table Explorer</h1>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
+  <h1
+  style={{
+    margin: 0,
+    fontSize: "2.8rem",
+    letterSpacing: "1px",
+  }}
+>
+  Periodic Table Explorer
+</h1>
+  <p style={{ marginTop: "8px", opacity: 0.7 }}>
+    Interactive chemistry experience built with React
+  </p>
+</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button
             onClick={() => setQuizOpen(true)}
@@ -40,6 +54,7 @@ function App() {
       <Trends />
       <CompareElements />
       <Assistant />
+      <ElementDetailsPanel />
       {quizOpen && <QuizMode onClose={() => setQuizOpen(false)} />}
     </div>
   );

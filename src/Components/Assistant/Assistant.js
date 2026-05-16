@@ -50,8 +50,9 @@ export default function Assistant() {
     setError(null);
 
     try {
-      const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
-      
+      // CRA inlines REACT_APP_* vars at build time; avoid process.env in the browser.
+      const apiKey = process.env.REACT_APP_GEMINI_API_KEY || process.env.REACT_APP_GEMINI_API_KEY;
+
       if (!apiKey) {
         throw new Error("Gemini API key is not configured. Please add REACT_APP_GEMINI_API_KEY to your .env file.");
       }
